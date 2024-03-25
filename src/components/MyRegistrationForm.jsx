@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import {
     Alert,
-    AutoComplete,
     Button,
-    Cascader,
-    Checkbox,
-    Col,
     Form,
     Input,
-    InputNumber,
-    Row,
-    Select, Space,
+    Select,
 } from 'antd';
 import {register} from "../api";
 import {useNavigate} from "react-router-dom";

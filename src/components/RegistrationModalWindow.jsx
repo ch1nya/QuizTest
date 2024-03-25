@@ -1,11 +1,8 @@
 import {useState} from "react";
-import {Button, Modal} from "antd";
-import {MyLoginForm} from "./MyLoginForm";
+import {Modal} from "antd";
 import {TrophyFilled} from "@ant-design/icons";
-import MyRegistraionForm from "./MyRegistraionForm";
+import MyRegistrationForm from "./MyRegistrationForm";
 import {useNavigate} from "react-router-dom";
-
-
 
 export function RegistrationModalWindow() {
     const [open, setOpen] = useState(true);
@@ -36,7 +33,7 @@ export function RegistrationModalWindow() {
                 okText = 'Register'
                 footer={null}
             >
-                <MyRegistraionForm />
+                <MyRegistrationForm />
             </Modal>
         </>
     );

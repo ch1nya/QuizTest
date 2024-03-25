@@ -2,8 +2,7 @@ import React from "react";
 import {Header} from "antd/es/layout/layout";
 import {Button} from "antd";
 import {PoweroffOutlined} from "@ant-design/icons";
-import {getQuizById, getQuizzes, getUser, getUsers, logout} from "../api";
-import axios from "axios";
+import {logout} from "../api";
 import {useNavigate} from "react-router-dom";
 const headerStyle = {
     textAlign: 'center',

@@ -3,8 +3,6 @@ import {Button, Modal} from "antd";
 import {MyLoginForm} from "./MyLoginForm";
 import {TrophyFilled} from "@ant-design/icons";
 
-
-
 export function LoginModalWindow() {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);

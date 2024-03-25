@@ -1,8 +1,5 @@
-import {Avatar, Button, Card} from "antd";
+import {Button, Card} from "antd";
 import Meta from "antd/es/card/Meta";
-import {EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
-import {useEffect, useState} from "react";
-import {getQuizById, getQuizzes} from "../api";
 
 export function QuizCard(props) {
 

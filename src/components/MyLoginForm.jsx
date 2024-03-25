@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
-import {Button, Checkbox, Form, Input} from "antd";
+import {useState} from "react";
+import {Button, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {getQuizById, getQuizzes, login} from "../api";
+import {login} from "../api";
 import {useNavigate} from "react-router-dom";
 export function MyLoginForm(){
 

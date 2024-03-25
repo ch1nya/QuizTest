@@ -8,7 +8,7 @@ import {QuizMainPage} from "./components/QuizMainPage";
 
 
 function App() {
-    const [isLoggedin, setIsLoggedin] = useState(false);
+    const [isLogedin, setIsLoggedin] = useState(false);
     return (
         <div className="App-header">
             <Router>

@@ -1,10 +1,7 @@
 import React from 'react';
-import {Layout, Flex, Button} from 'antd';
+import {Layout, Flex} from 'antd';
 import {MyHeader} from "./MyHeader";
 import MyContent from "./MyContent";
-import {getQuizById, getQuizzes, getUser, getUsers} from "../api";
-import async from "async";
-const { Header, Footer, Sider, Content } = Layout;
 
 
 const layoutStyle = {
@@ -16,8 +13,6 @@ const layoutStyle = {
     minHeight: '100vh'
 };
 export function QuizMainPage() {
-
-
 
     return (
         <Flex gap="middle" wrap="wrap">

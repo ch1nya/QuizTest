@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Layout } from 'antd';
 import {QuizCard} from "./QuizCard";
 import {QuizQuestionCard} from "./QuizQuestionCard";
@@ -13,11 +13,7 @@ const contentStyle = {
     backgroundColor: '#282c34',
     height: '10vh',
     width:'100%',
-
 };
-
-
-
 
 function MyContent() {
     const [quizSelected, setQuizSelected] = useState(false);
@@ -47,10 +43,9 @@ function MyContent() {
                 }
             }
         }
-
         fetchQuizData();
     }, [cardToBeShown,cardToBeShown]);
-    // TODO проверить токен авторизации
+    // TODO проверить токен авторизации? :)
     return (
         <>
             <Content
@@ -75,7 +70,6 @@ function MyContent() {
                                                     setCardToBeShown={setCardToBeShown}/>}
 
             </Content>
-
         </>
     );
 }

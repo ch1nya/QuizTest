@@ -1,5 +1,5 @@
 import {Alert, Button, Card} from "antd";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {sendAnswers} from "../api";
 
 export const QuizQuestionCard = (props) => {
@@ -8,25 +8,6 @@ export const QuizQuestionCard = (props) => {
     const [answersToSend, setAnswersToSend] = useState([]);
     const [showError, setShowError] = useState(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    // const indexHandler = () =>{
-    //     console.log(answersToSend)
-    //     if (currentQuestionIndex < props.questions.length - 1) {
-    //         setCurrentQuestionIndex((prev) => prev + 1);
-    //     } else {
-    //         sendAnswers(answersToSend,props.setCardToBeShown) //TODO replace with ID
-    //         props.setQuizSelected(false)
-    //         props.setCardToBeShown(null)
-    //
-    //     }
-    // }
-    //
-    // const handleAnswerClick = (answer) => {
-    //     setAnswersToSend((prev) => [...prev, answer]);
-    //     console.log(answer,'ans')
-    //     indexHandler()
-    // };
-    // useEffect(() => {
-    // }, [answersToSend]);
     const handleAnswerClick = (answer) => {
         if (answer.toLowerCase().includes('correct')) {
             setRightAnswers(prev => prev + 1);
@@ -47,8 +28,6 @@ export const QuizQuestionCard = (props) => {
             props.setCardToBeShown(null);
         }
     };
-
-
 
     return (
         <>
