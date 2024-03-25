@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {LoginModalWindow} from "./components/LoginModalWindow";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {RegistrationModalWindow} from "./components/RegistrationModalWindow";
+import {useState} from "react";
+import {QuizMainPage} from "./components/QuizMainPage";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const [isLoggedin, setIsLoggedin] = useState(false);
+    return (
+        <div className="App-header">
+            <Router>
+                <Routes>
+                        <Route path="/" element={<LoginModalWindow />}/>
+                        <Route path="/login" element={<LoginModalWindow />}/>
+                        <Route path='/registration' element={<RegistrationModalWindow/>}/>
+                        <Route path='/main' element={<QuizMainPage/>}/>
+                </Routes>
+            </Router>
+        </div>
   );
 }
 

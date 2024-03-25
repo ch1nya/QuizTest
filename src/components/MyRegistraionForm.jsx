@@ -1,68 +1,151 @@
-import {useEffect, useState} from "react";
-import {Button, Checkbox, Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {login} from "../api";
-export function MyLoginForm(){
+import React, { useState } from 'react';
+import {
+    Alert,
+    AutoComplete,
+    Button,
+    Cascader,
+    Checkbox,
+    Col,
+    Form,
+    Input,
+    InputNumber,
+    Row,
+    Select, Space,
+} from 'antd';
+import {register} from "../api";
+import {useNavigate} from "react-router-dom";
+const { Option } = Select;
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+const formItemLayout = {
+    labelCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 8,
+        },
+    },
+    wrapperCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 16,
+        },
+    },
+};
+const tailFormItemLayout = {
+    wrapperCol: {
+        xs: {
+            span: 24,
+            offset: 0,
+        },
+        sm: {
+            span: 16,
+            offset: 8,
+        },
+    },
+};
 
+export function MyRegistrationForm(){
+    const [form] = Form.useForm();
+    const navigate = useNavigate()
+    const [alertVisible, setAlertVisible] = useState(false);
     const onFinish = async (values) => {
-        setLoading(true);
-        try {
-            const response = await login(values.username, values.password);
-            console.log('Login successful:', response);
-            // Дальнейшие действия после успешного входа
-        } catch (error) {
-            setError('Login failed. Please check your credentials.');
-            console.error('Login failed:', error);
+        try{
+            const response = await register(values.username,values.password)
+            console.log('Registration successful:', response);
+            setAlertVisible(true)
+            setTimeout(() => {
+                navigate('/login');
+            }, 3000);
+        }catch (e){
+            console.error('Registration failed:', e);
         }
-        setLoading(false);
     };
 
     return (
-        <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{
-                remember: true,
-            }}
-            onFinish={onFinish}
-        >
-            <Form.Item
-                name="username"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Username!',
-                    },
-                ]}
-            >
-                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-            </Form.Item>
-            <Form.Item
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Password!',
-                    },
-                ]}
-            >
-                <Input
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
+        <>
+            {alertVisible && (
+                <Alert
+                    message="Registration is successful"
+                    description="Now you are going to be redirected to login page"
+                    type="success"
+                    showIcon
+                    style={{margin:'1rem auto'}}
                 />
-            </Form.Item>
-            <Form.Item>
-                <Button style={{width:"100%"}} type="primary" htmlType="submit" className="login-form-button">
-                    Log in
-                </Button>
-                Or <a href="/registration">register now!</a>
-            </Form.Item>
+            )}
+            <Form
+                {...formItemLayout}
+                form={form}
+                name="register"
+                onFinish={onFinish}
+                initialValues={{
+                }}
+                style={{
+                    maxWidth: 600,
+                }}
+                scrollToFirstError
+            >
 
-        </Form>
-    );
+                <Form.Item
+                    name="username"
+                    label="Username"
+                    tooltip="What do you want others to call you?"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                            whitespace: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    name="password"
+                    label="Password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]}
+                    hasFeedback
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                    name="confirm"
+                    label="Confirm Password"
+                    dependencies={['password']}
+                    hasFeedback
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please confirm your password!',
+                        },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue('password') === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error('The new password that you entered do not match!'));
+                            },
+                        }),
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary" htmlType="submit">
+                        Register
+                    </Button>
+                </Form.Item>
+            </Form>
+        </>)
+
+
 }
-    export default MyLoginForm
+export default MyRegistrationForm

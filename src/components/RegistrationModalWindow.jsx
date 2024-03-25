@@ -2,16 +2,16 @@ import {useState} from "react";
 import {Button, Modal} from "antd";
 import {MyLoginForm} from "./MyLoginForm";
 import {TrophyFilled} from "@ant-design/icons";
+import MyRegistraionForm from "./MyRegistraionForm";
+import {useNavigate} from "react-router-dom";
 
 
 
-export function LoginModalWindow() {
-    const [open, setOpen] = useState(false);
+export function RegistrationModalWindow() {
+    const [open, setOpen] = useState(true);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const showModal = () => {
-        setOpen(true);
-    };
+    const navigate = useNavigate()
     const handleOk = () => {
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
@@ -21,22 +21,22 @@ export function LoginModalWindow() {
         }, 2000);
     };
     const handleCancel = () => {
-        console.log('Clicked cancel button');
         setOpen(false);
+        navigate('/')
+
     };
     return (
         <>  <TrophyFilled   style={{margin:'1rem',fontSize:'6rem',color:'#fff'}}/>
-            <Button type="primary" onClick={showModal}>
-                Login to the quizZz
-            </Button>
             <Modal
-                title="Login"
+                title="Registration"
                 open={open}
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
+                okText = 'Register'
+                footer={null}
             >
-                <MyLoginForm/>
+                <MyRegistraionForm />
             </Modal>
         </>
     );
